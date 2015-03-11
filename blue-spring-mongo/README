@@ -1,0 +1,16 @@
+本项目主要为了介绍使用Spring使用MongoDB数据
+所使用的MongoDB java driver版本为1.6.2.RELEASE
+
+本项目从两种方式调用创建MongoDB连接
+一个是从配置文件中调用，一个是从Java代码使用
+
+配置文件
+
+applicationContext-mongo-bean.xml  表示使用Java代码配置使用Spring Bean
+在src/test/java/ene.blue.spring.mongo中ApplicationMongoBean.java
+为调用的方法
+
+applicationContext-mongo.xml  表示使用Java代码配置使用Spring Bean
+在src/test/java/ene.blue.spring.mongo中ApplicationMongoXML.java
+为调用的方法
+
