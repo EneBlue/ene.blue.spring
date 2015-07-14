@@ -1,8 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans
-	xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:mongo="http://www.springframework.org/schema/data/mongo"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="
 		http://www.springframework.org/schema/beans       http://www.springframework.org/schema/beans/spring-beans-4.0.xsd
@@ -10,32 +8,29 @@
 		http://www.springframework.org/schema/context     http://www.springframework.org/schema/context/spring-context-4.0.xsd  
 	">
 	
-	<context:component-scan base-package="ene.blue.spring.mongo.action" />
+	<context:property-placeholder location="classpath*:mongo.properties"/>
 	
-	<mongo:mongo host="localhost" port="27017" >
+	<context:component-scan base-package="ene.blue.spring.mongo.action" />
+
+	<mongo:mongo host="${mongo.address}" port="${mongo.port}">
 		<mongo:options connections-per-host="8"
 			threads-allowed-to-block-for-connection-multiplier="4"
-			connect-timeout="1000"
-			max-wait-time="1500"
-			auto-connect-retry="true"
-			socket-keep-alive="true"
-			socket-timeout="1500"
-			slave-ok="true"
-			write-number="1"
-			write-timeout="0"
-			write-fsync="true"/>
+			connect-timeout="1000" max-wait-time="1500" auto-connect-retry="true"
+			socket-keep-alive="true" socket-timeout="1500" slave-ok="true"
+			write-number="1" write-timeout="0" write-fsync="true" />
 	</mongo:mongo>
-	
+
 	<!-- 直接创建MongoTemplate实例 -->
 	<bean id="mongoTemplateNext" class="org.springframework.data.mongodb.core.MongoTemplate">
-		<constructor-arg name="mongo" ref="mongo"/>
-		<constructor-arg name="databaseName" value="springDB"/>
+		<constructor-arg name="mongo" ref="mongo" />
+		<constructor-arg name="databaseName" value="${mongo.database}"/>
 	</bean>
-	
+
 	<!-- 使用MongoDbFactory创建MongoTemplate实例 -->
-	<mongo:db-factory dbname="springDB" mongo-ref="mongo"/>
+	<mongo:db-factory mongo-ref="mongo" dbname="${mongo.database}" username="${mongo.username}"
+		password="${mongo.password}"  />
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
 		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
 	</bean>
-	
+
 </beans>

@@ -35,7 +35,7 @@ public class ApplicationMongoXML extends AbstractJUnit4SpringContextTests{
 		baseAction.save(person);
 		log.info(person.getId());// 2015-02-06 14:22:41,892 INFO   - 54d45db14032910b28ba6ffc
 		
-		baseAction.dropCollection(Person.class);
+		//baseAction.dropCollection(Person.class);
 	}
 	
 }

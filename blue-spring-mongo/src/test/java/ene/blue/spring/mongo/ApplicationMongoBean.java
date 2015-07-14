@@ -29,6 +29,6 @@ public class ApplicationMongoBean {
 		baseAction.save(person);
 		log.info(person.getId());// 2015-02-06 14:21:23,339 INFO   - 54d45d634032606b8f7255fb
 		
-		baseAction.dropCollection(Person.class);
+		//baseAction.dropCollection(Person.class);
 	}
 }
