@@ -14,3 +14,8 @@ applicationContext-mongo.xml  表示使用Java代码配置使用Spring Bean
 在src/test/java/ene.blue.spring.mongo中ApplicationMongoXML.java
 为调用的方法
 
+
+BUG说明
+1.在使用用户名和密码连接远程的mongodb时，总是连接错误，将data.mongo的jar包
+      升级到1.7.1.RELEASE后边成功
+
